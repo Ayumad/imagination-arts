@@ -1,15 +1,32 @@
+import Image from "next/image";
+
 const slides = [
-  ["student-art", "Student artwork", "Future photo slot for a finished student art piece."],
-  ["studio-hands", "Hands at work", "Future photo slot for artists making together in the studio."],
-  ["color-play", "Color experiments", "Future photo slot for paint, clay, collage, or mixed-media details."],
-  ["classroom", "Creative community", "Future photo slot for a welcoming classroom or group moment."],
-  ["art-wall", "Art on display", "Future photo slot for an artwork wall, project display, or studio detail."],
+  { file: "painting-landscape.jpeg", title: "Painting in progress", alt: "A young artist painting a bright landscape on canvas." },
+  { file: "sunset-artwork.jpeg", title: "Artwork on display", alt: "A student-made sunset painting with silhouetted trees." },
+  { file: "pencil-sketching.jpeg", title: "Sketching details", alt: "An artist drawing a palm tree scene in pencil." },
+  { file: "colorful-bird.jpeg", title: "Colorful ideas", alt: "A young artist painting a colorful bird on canvas." },
+  { file: "cherry-blossom-art.jpeg", title: "Making something special", alt: "A student adding details to a cherry blossom artwork." },
 ];
 
 function GalleryGroup({ duplicate = false }: { duplicate?: boolean }) {
-  return <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>{slides.map(([style, title, description]) => <figure className={`photo-placeholder photo-placeholder--${style}`} key={title} role={duplicate ? undefined : "img"} aria-label={duplicate ? undefined : description}><figcaption><span>Future photo</span><strong>{title}</strong></figcaption></figure>)}</div>;
+  return (
+    <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>
+      {slides.map((slide) => (
+        <figure className="studio-photo" key={slide.file}>
+          <Image
+            src={`/images/studio/${slide.file}`}
+            alt={duplicate ? "" : slide.alt}
+            fill
+            sizes="(max-width: 600px) 158px, (max-width: 1180px) 18vw, 211px"
+            priority={!duplicate}
+          />
+          <figcaption>{slide.title}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
 }
 
 export function PhotoCarousel() {
-  return <section className="photo-carousel" aria-label="Future student art and studio photo gallery"><div className="photo-carousel__track"><GalleryGroup /><GalleryGroup duplicate /></div></section>;
+  return <section className="photo-carousel" aria-label="Student artwork and studio gallery"><div className="photo-carousel__track"><GalleryGroup /><GalleryGroup duplicate /></div></section>;
 }
