@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 import { PhotoLightbox } from "@/components/photo-lightbox";
 import { studioImages } from "@/lib/studio-images";
@@ -11,17 +12,25 @@ function GalleryGroup({ duplicate = false, onOpen }: { duplicate?: boolean; onOp
     <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>
       {slides.map(({ file, alt }, index) => duplicate ? (
         <figure className="studio-photo" key={file}>
-          <img
-            src={`/images/studio/${file}?v=4`}
+          <Image
+            src={`/images/studio/${file}`}
             alt=""
             aria-hidden="true"
-            loading="eager"
-            decoding="async"
+            fill
+            sizes="(max-width: 600px) 76vw, 22vw"
+            quality={70}
           />
         </figure>
       ) : (
         <button className="studio-photo" type="button" key={file} onClick={() => onOpen?.(index)} aria-label={`Open photo ${index + 1} in expanded view`}>
-          <img src={`/images/studio/${file}?v=4`} alt={alt} loading="eager" decoding="async" />
+          <Image
+            src={`/images/studio/${file}`}
+            alt={alt}
+            fill
+            sizes="(max-width: 600px) 76vw, 22vw"
+            quality={70}
+            priority={index < 5}
+          />
         </button>
       ))}
     </div>

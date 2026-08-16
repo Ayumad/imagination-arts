@@ -51,7 +51,7 @@ export function PhotoLightbox({ photos, index, onIndexChange, onClose }: PhotoLi
       <button ref={closeButton} className="photo-lightbox__close" type="button" onClick={onClose} aria-label="Close expanded photo">×</button>
       <button className="photo-lightbox__nav photo-lightbox__nav--previous" type="button" onClick={() => onIndexChange((index - 1 + photos.length) % photos.length)} aria-label="Previous photo">‹</button>
       <div className="photo-lightbox__image">
-        <Image src={photo.src} alt={photo.alt} fill sizes="100vw" unoptimized priority />
+        <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 600px) 100vw, 86vw" quality={82} priority />
       </div>
       <button className="photo-lightbox__nav photo-lightbox__nav--next" type="button" onClick={() => onIndexChange((index + 1) % photos.length)} aria-label="Next photo">›</button>
     </div>
