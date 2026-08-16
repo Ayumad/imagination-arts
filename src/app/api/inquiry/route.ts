@@ -142,7 +142,8 @@ export async function POST(request: NextRequest) {
   });
 
   if (!response.ok) {
-    console.error("Inquiry email delivery failed with status", response.status);
+    const providerError = await response.text();
+    console.error("Inquiry email delivery failed", response.status, providerError.slice(0, 500));
     return NextResponse.json({ error: "Inquiry delivery failed." }, { status: 502 });
   }
 
