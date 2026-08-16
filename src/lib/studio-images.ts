@@ -1,4 +1,10 @@
 export const studioImages = [
+  "IMG_0490.jpeg",
+  "IMG_1636.jpeg",
+  "IMG_7613.jpeg",
+  "IMG_9981.jpeg",
+  "IMG_2703.jpeg",
+  "IMG_2704.jpeg",
   "737c23b1-6787-4a03-9b5f-83cdf9a2cbe0.JPG",
   "83a8422d-e177-48e1-ab2d-1ac1ee7f9b6a.jpeg",
   "IMG_0086.jpeg",
