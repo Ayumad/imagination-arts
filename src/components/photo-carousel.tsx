@@ -7,7 +7,7 @@ import { studioImages } from "@/lib/studio-images";
 
 const slides = studioImages;
 
-function GalleryGroup({ duplicate = false, onOpen, onImageLoad }: { duplicate?: boolean; onOpen?: (index: number) => void; onImageLoad: () => void }) {
+function GalleryGroup({ duplicate = false, onOpen, onImageLoad }: { duplicate?: boolean; onOpen?: (index: number) => void; onImageLoad?: () => void }) {
   return (
     <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>
       {slides.map(({ file, alt }, index) => duplicate ? (
@@ -17,7 +17,7 @@ function GalleryGroup({ duplicate = false, onOpen, onImageLoad }: { duplicate?: 
             alt=""
             aria-hidden="true"
             fill
-            sizes="(max-width: 600px) 76vw, 22vw"
+            sizes="(max-width: 600px) 34vw, 22vw"
             quality={70}
             loading="eager"
             fetchPriority="low"
@@ -30,7 +30,7 @@ function GalleryGroup({ duplicate = false, onOpen, onImageLoad }: { duplicate?: 
             src={`/images/studio/${file}`}
             alt={alt}
             fill
-            sizes="(max-width: 600px) 76vw, 22vw"
+            sizes="(max-width: 600px) 34vw, 22vw"
             quality={70}
             priority={index < 5}
             loading={index < 5 ? undefined : "eager"}
@@ -48,13 +48,13 @@ export function PhotoCarousel() {
   const [loadedImages, setLoadedImages] = useState(0);
   const photos = useMemo(() => slides.map(({ file, alt }) => ({ src: `/images/studio/${file}`, alt })), []);
   const closeLightbox = useCallback(() => setActiveIndex(null), []);
-  const markImageLoaded = useCallback(() => setLoadedImages((count) => Math.min(count + 1, slides.length * 2)), []);
-  const carouselReady = loadedImages === slides.length * 2;
+  const markImageLoaded = useCallback(() => setLoadedImages((count) => Math.min(count + 1, slides.length)), []);
+  const carouselReady = loadedImages === slides.length;
 
   return (
     <>
       <section className={`photo-carousel${activeIndex !== null || !carouselReady ? " photo-carousel--paused" : ""}`} aria-label="Student artwork and studio gallery">
-        <div className="photo-carousel__track"><GalleryGroup onOpen={setActiveIndex} onImageLoad={markImageLoaded} /><GalleryGroup duplicate onImageLoad={markImageLoaded} /></div>
+        <div className="photo-carousel__track"><GalleryGroup onOpen={setActiveIndex} onImageLoad={markImageLoaded} /><GalleryGroup duplicate /></div>
       </section>
       {activeIndex !== null && <PhotoLightbox photos={photos} index={activeIndex} onIndexChange={setActiveIndex} onClose={closeLightbox} />}
     </>
