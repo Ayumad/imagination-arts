@@ -1,26 +1,43 @@
 import Image from "next/image";
 
 const slides = [
-  { file: "painting-landscape.jpeg", title: "Painting in progress", alt: "A young artist painting a bright landscape on canvas." },
-  { file: "sunset-artwork.jpeg", title: "Artwork on display", alt: "A student-made sunset painting with silhouetted trees." },
-  { file: "pencil-sketching.jpeg", title: "Sketching details", alt: "An artist drawing a palm tree scene in pencil." },
-  { file: "colorful-bird.jpeg", title: "Colorful ideas", alt: "A young artist painting a colorful bird on canvas." },
-  { file: "cherry-blossom-art.jpeg", title: "Making something special", alt: "A student adding details to a cherry blossom artwork." },
+  "737c23b1-6787-4a03-9b5f-83cdf9a2cbe0.JPG",
+  "83a8422d-e177-48e1-ab2d-1ac1ee7f9b6a.jpeg",
+  "IMG_0086.jpeg",
+  "IMG_0088.jpeg",
+  "IMG_0270.jpeg",
+  "IMG_0350.jpeg",
+  "IMG_2088.JPG",
+  "IMG_2667.jpeg",
+  "IMG_2671.jpeg",
+  "IMG_2804.jpeg",
+  "IMG_2810.jpeg",
+  "IMG_2907.jpeg",
+  "IMG_4101.jpeg",
+  "IMG_4103.jpeg",
+  "IMG_4719.jpeg",
+  "IMG_4805.jpeg",
+  "IMG_5143.jpeg",
+  "IMG_5727.jpeg",
+  "IMG_5827.jpeg",
+  "IMG_8167.JPG",
+  "IMG_8977.jpeg",
+  "IMG_9230.jpeg",
+  "IMG_9977.jpeg",
 ];
 
-function GalleryGroup({ duplicate = false }: { duplicate?: boolean }) {
+function GalleryGroup({ images, duplicate = false }: { images: string[]; duplicate?: boolean }) {
   return (
     <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>
-      {slides.map((slide) => (
-        <figure className="studio-photo" key={slide.file}>
+      {images.map((file) => (
+        <figure className="studio-photo" key={file}>
           <Image
-            src={`/images/studio/${slide.file}`}
-            alt={duplicate ? "" : slide.alt}
+            src={`/images/studio/${file}`}
+            alt={duplicate ? "" : "Student artwork and making moments from Imagination Arts."}
             fill
-            sizes="(max-width: 600px) 158px, (max-width: 1180px) 18vw, 211px"
+            sizes="(max-width: 600px) 158px, (max-width: 1180px) 18vw, 230px"
             priority={!duplicate}
           />
-          <figcaption>{slide.title}</figcaption>
         </figure>
       ))}
     </div>
@@ -28,5 +45,17 @@ function GalleryGroup({ duplicate = false }: { duplicate?: boolean }) {
 }
 
 export function PhotoCarousel() {
-  return <section className="photo-carousel" aria-label="Student artwork and studio gallery"><div className="photo-carousel__track"><GalleryGroup /><GalleryGroup duplicate /></div></section>;
+  const topRow = slides.filter((_, index) => index % 2 === 0);
+  const bottomRow = slides.filter((_, index) => index % 2 !== 0);
+
+  return (
+    <section className="photo-carousel" aria-label="Student artwork and studio gallery">
+      <div className="photo-carousel__lane">
+        <div className="photo-carousel__track photo-carousel__track--forward"><GalleryGroup images={topRow} /><GalleryGroup images={topRow} duplicate /></div>
+      </div>
+      <div className="photo-carousel__lane">
+        <div className="photo-carousel__track photo-carousel__track--reverse"><GalleryGroup images={bottomRow} /><GalleryGroup images={bottomRow} duplicate /></div>
+      </div>
+    </section>
+  );
 }
