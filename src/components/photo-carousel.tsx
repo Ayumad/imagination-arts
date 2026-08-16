@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const slides = [
   "737c23b1-6787-4a03-9b5f-83cdf9a2cbe0.JPG",
   "83a8422d-e177-48e1-ab2d-1ac1ee7f9b6a.jpeg",
@@ -31,12 +29,12 @@ function GalleryGroup({ images, duplicate = false }: { images: string[]; duplica
     <div className="photo-carousel__group" aria-hidden={duplicate || undefined}>
       {images.map((file) => (
         <figure className="studio-photo" key={file}>
-          <Image
+          <img
             src={`/images/studio/${file}`}
             alt={duplicate ? "" : "Student artwork and making moments from Imagination Arts."}
-            fill
-            sizes="(max-width: 600px) 158px, (max-width: 1180px) 18vw, 230px"
-            priority={!duplicate}
+            aria-hidden={duplicate || undefined}
+            loading="eager"
+            decoding="async"
           />
         </figure>
       ))}
