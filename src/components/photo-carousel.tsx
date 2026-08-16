@@ -30,7 +30,7 @@ function GalleryGroup({ images, duplicate = false }: { images: string[]; duplica
       {images.map((file) => (
         <figure className="studio-photo" key={file}>
           <img
-            src={`/images/studio/${file}`}
+            src={`/images/studio/${file}?v=2`}
             alt={duplicate ? "" : "Student artwork and making moments from Imagination Arts."}
             aria-hidden={duplicate || undefined}
             loading="eager"

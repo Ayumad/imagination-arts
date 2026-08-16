@@ -55,11 +55,11 @@ h3 { font-size:1.5rem; margin-bottom:10px; }
 .paint-hero__pencil { position:absolute; width:42%; height:34px; left:0; bottom:10%; background:var(--ink); border-radius:999px; transform:rotate(-15deg); box-shadow:17px 0 0 var(--sun) inset; }
 .paint-hero__pencil::after { content:""; position:absolute; right:-19px; width:0; height:0; border-top:17px solid transparent; border-bottom:17px solid transparent; border-left:22px solid #d7be9b; }
 .paint-hero__caption { position:absolute; right:3%; bottom:1%; max-width:185px; padding:12px 15px; color:var(--ink); background:var(--sun); border-radius:4px 16px 5px 15px; font-size:.78rem; font-weight:800; transform:rotate(-4deg); }
-.photo-carousel { width:100%; margin:0; padding:0; overflow:hidden; background:#fffdf8; }
+.photo-carousel { width:100%; margin:0; padding:10px 0; overflow:hidden; background:#fffdf8; }
 .photo-carousel__track { display:flex; gap:0; width:max-content; will-change:transform; animation:gallery-scroll 78s linear infinite; }
 .photo-carousel:hover .photo-carousel__track { animation-play-state:paused; }
-.photo-carousel__group { display:flex; gap:0; }
-.studio-photo { position:relative; flex:0 0 clamp(180px, 20vw, 270px); aspect-ratio:1 / .74; margin:0; overflow:hidden; border:0; border-radius:0; background:#fffdf8; box-shadow:none; }
+.photo-carousel__group { display:flex; gap:10px; padding-right:10px; }
+.studio-photo { position:relative; flex:0 0 clamp(180px, 20vw, 270px); aspect-ratio:1 / .74; margin:0; overflow:hidden; border:0; border-radius:14px 5px 14px 5px; background:#fffdf8; box-shadow:none; }
 .studio-photo img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .6s ease, filter .35s ease; }
 .studio-photo:hover img { transform:scale(1.06); filter:saturate(1.07); }
 @keyframes gallery-scroll { to { transform:translate3d(-50%, 0, 0); } }
