@@ -45,17 +45,9 @@ function GalleryGroup({ images, duplicate = false }: { images: string[]; duplica
 }
 
 export function PhotoCarousel() {
-  const topRow = slides.filter((_, index) => index % 2 === 0);
-  const bottomRow = slides.filter((_, index) => index % 2 !== 0);
-
   return (
     <section className="photo-carousel" aria-label="Student artwork and studio gallery">
-      <div className="photo-carousel__lane">
-        <div className="photo-carousel__track photo-carousel__track--forward"><GalleryGroup images={topRow} /><GalleryGroup images={topRow} duplicate /></div>
-      </div>
-      <div className="photo-carousel__lane">
-        <div className="photo-carousel__track photo-carousel__track--reverse"><GalleryGroup images={bottomRow} /><GalleryGroup images={bottomRow} duplicate /></div>
-      </div>
+      <div className="photo-carousel__track"><GalleryGroup images={slides} /><GalleryGroup images={slides} duplicate /></div>
     </section>
   );
 }
