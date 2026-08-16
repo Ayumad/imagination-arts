@@ -14,13 +14,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
+    url: "/",
     locale: "en_US",
     siteName: "Imagination Arts",
     title: "Imagination Arts | Art Classes in Ardenwood, Fremont",
     description: "Big imaginations start with one colorful idea.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Imagination Arts" }],
   },
-  twitter: { card: "summary_large_image", title: "Imagination Arts", description: "Joyful art classes in Ardenwood, Fremont." },
+  twitter: {
+    card: "summary_large_image",
+    title: "Imagination Arts | Art Classes for Ages 4+",
+    description: "Joyful art classes for kids, high schoolers, and adults in Fremont.",
+    images: [{ url: "/opengraph-image", alt: "Imagination Arts art classes" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
