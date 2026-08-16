@@ -182,11 +182,16 @@ h3 { font-size:1.5rem; margin-bottom:10px; }
 .field label { font-size:.83rem; font-weight:900; }
 .field input, .field select, .field textarea { width:100%; padding:12px 13px; color:var(--ink); background:#fffdf8; border:1px solid #cbd3dc; border-radius:9px; }
 .field textarea { min-height:115px; resize:vertical; }
+.field--website { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 .form-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:22px; }
+.form-actions .button:disabled { opacity:.68; cursor:wait; transform:none; box-shadow:none; }
 .form-note { color:#657082; font-size:.78rem; margin:0; }
 .prepared-message { margin-top:23px; padding:20px; border-radius:12px; background:#e4f4ed; }
 .prepared-message h3 { margin-bottom:7px; font-size:1.4rem; }
 .prepared-message p { color:#536173; margin-bottom:15px; }
+.form-error { margin-top:23px; padding:20px; border-radius:12px; background:#fff0ed; border:1px solid #f5b0a8; }
+.form-error h3 { margin-bottom:7px; font-size:1.4rem; }
+.form-error p { color:#674942; margin:0; }
 .faq { margin-top:74px; }
 .faq h2 { margin-bottom:23px; }
 .faq details { padding:17px 0; border-top:1px solid var(--line); }
